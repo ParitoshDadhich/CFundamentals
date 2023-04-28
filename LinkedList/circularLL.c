@@ -133,6 +133,30 @@ void delete(int pos){
     printf("Node has been deleted at pos %d\n", pos);
 }
 
+void reverse(struct Node *node){
+    struct Node *InitialFirstNode = node;
+    struct Node *InitialLastNode = getTheLastNode(node);
+    // node->next = InitialLastNode;
+
+    struct Node *r = NULL;
+    struct Node *q = NULL;
+    struct Node *p = InitialFirstNode;
+
+    do{
+        r = q;
+        q = p;
+        p = p->next;
+        if(q == InitialFirstNode){
+            q->next = InitialLastNode;
+        }else{
+            q->next = r;
+        }
+    }while(p != InitialFirstNode);
+    Head = q;
+
+    printf("Circular LL has been reversed!\n");
+}
+
 int main(){
     int arr[] = {1,2,3,4,5};
     create(arr, 5);
@@ -143,6 +167,9 @@ int main(){
     rDisplay(Head);
     printf("\n******************************\n");
     delete(4);
+    rDisplay(Head);
+    printf("\n******************************\n");
+    reverse(Head);
     rDisplay(Head);
     printf("\n******************************\n");
 }
