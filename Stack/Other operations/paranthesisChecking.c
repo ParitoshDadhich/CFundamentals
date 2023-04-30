@@ -41,12 +41,19 @@ int isBalanced(char expression[]){
 
     int i=0;
     while(expression[i] != '\0'){
-        if(expression[i] == '('){
+        if(expression[i] == '(' || expression[i] == '{' || expression[i] == '['){
             push(expression[i]);
         }
-        else if(expression[i] == ')'){
+        else if(expression[i] == ')' || expression[i] == '}' || expression[i] == ']'){
             if(top == NULL)
                 return 0;
+            else if(expression[i] == ')' && top->data != '(')
+                return 0;
+            else if(expression[i] == '}' && top->data != '{')
+                return 0;
+            else if(expression[i] == ']' && top->data != '[')
+                return 0;
+
             pop();
         }
         i++;
@@ -59,7 +66,7 @@ int isBalanced(char expression[]){
 }
 
 int main(){
-    char *exp = "((a+b)*(c-d))";
+    char *exp = "{([a+b]*[c-d])/e}";
     int balanced = isBalanced(exp);
     printf("is the expression balanced? %d\n", balanced);
 
