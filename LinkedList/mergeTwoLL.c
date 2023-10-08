@@ -2,17 +2,17 @@
 #include <stdio.h>
 
 typedef struct Node Node;
+void createList(int arr[], int n, Node **header);
+void displayList(Node *node);
+void merge(Node *first, Node *second);
+void displayList(Node *node);
+
 
 struct Node {
     int data;
     Node *next;
 } *first = NULL, *second = NULL, *third = NULL;
 
-
-void createList(int arr[], int n, Node **header);
-void displayList(Node *node);
-void merge(Node *first, Node *second);
-void displayList(Node *node);
 
 int main() {
     int arr1[] = {1,3,5,7};
